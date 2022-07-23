@@ -3,10 +3,14 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import itemRoutes from './routes/items.js'
+
 // Obtenemos las variables del .env
 dotenv.config();
 
 const app = express();
+
+app.use('/items', itemRoutes);
 
 app.use(express.json());
 app.use(cors());
