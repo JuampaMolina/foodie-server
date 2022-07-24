@@ -5,8 +5,8 @@ const itemSchema = mongoose.Schema({
     category: String,
     description: String,
     price: Number
-});
+}, {versionKey: false});
 
-const MenuItem = mongoose.model('MenuItem', itemSchema);
+const Item = mongoose.model('Item', itemSchema);
 
-export default MenuItem;
+export default Item;

@@ -5,20 +5,24 @@ import dotenv from 'dotenv';
 
 import itemRoutes from './routes/items.js'
 
-// Obtenemos las variables del .env
-dotenv.config();
-
 const app = express();
-
-app.use('/items', itemRoutes);
+dotenv.config();
 
 app.use(express.json());
 app.use(cors());
 
+app.use('/items', itemRoutes);
+
+// 404
+app.use(function (req, res) {
+    res.status(404).json({
+      message: "Page does not exist"
+    });
+  });
+
 const PORT = process.env.PORT || 3000;
-const CONNECTION_URI = process.env.MONGO_URI;
 
 // Abrimos el servidor si la conexión con mongo es extitosa
-mongoose.connect(CONNECTION_URI)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => app.listen(PORT, () => console.log(`Server running at ${PORT}`)))
     .catch((error) => console.error(error.message));
