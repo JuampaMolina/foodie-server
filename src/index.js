@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import itemRoutes from './routes/items.js'
+import categoryRoutes from './routes/categories.js'
 
 const app = express();
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/items', itemRoutes);
+app.use('/categories', categoryRoutes);
 
 // 404
 app.use(function (req, res) {
