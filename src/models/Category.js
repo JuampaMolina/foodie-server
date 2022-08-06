@@ -1,9 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const categorySchema = mongoose.Schema({
+const categorySchema = mongoose.Schema(
+  {
     name: String,
-}, {versionKey: false});
+  },
+  { versionKey: false }
+);
 
-const Category = mongoose.model('Category', categorySchema);
+// todo: cuando borro una categoría se debería de quitar de los items que la tenían
+// https://mongoosejs.com/docs/middleware.html
+
+const Category = mongoose.model("Category", categorySchema);
 
 export default Category;
