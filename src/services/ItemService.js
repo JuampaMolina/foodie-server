@@ -22,17 +22,25 @@ export async function getById(id) {
   }
 }
 
+export async function getItemsByCategoryId(categoryId) {
+  try {
+    const category = await Category.findById(categoryId);
+    if (!category) {
+      throw new Error("La categoría no ha sido encontrada");
+    }
+    const items = await Item.find({ "category._id": categoryId });
+    return items;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function create(data) {
   try {
-    const category = await Category.findById(data.categoryId);
-    if (!category) {
+    const categoryQuery = await Category.findById(data.category._id);
+    if (!categoryQuery) {
       throw new Error("Categoría no encontrada");
     }
-
-    data = {
-      ...data,
-      category,
-    };
 
     const item = await Item.create(data);
     if (!item) {
@@ -46,15 +54,10 @@ export async function create(data) {
 
 export async function update(id, data) {
   try {
-    const category = await Category.findById(data.categoryId);
-    if (!category) {
+    const categoryQuery = await Category.findById(data.category._id);
+    if (!categoryQuery) {
       throw new Error("Categoría no encontrada");
     }
-
-    data = {
-      ...data,
-      category,
-    };
 
     const item = await Item.findByIdAndUpdate(id, data, { new: true });
     if (!item) {
