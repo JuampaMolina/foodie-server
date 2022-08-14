@@ -1,12 +1,14 @@
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import itemRoutes from "./routes/items.js";
 import categoryRoutes from "./routes/categories.js";
 import requestLogger from "./middleware/requestLogger.js";
 import responseLogger from "./middleware/responseLogger.js";
+
+import mongo from "./db/mongo.js";
 
 const app = express();
 dotenv.config();
@@ -28,8 +30,13 @@ app.use(function (req, res) {
 
 const PORT = process.env.PORT || 3000;
 
+mongo
+  .connect()
+  .then(() => app.listen(PORT, () => console.log(`Server running at ${PORT}`)));
+// .then(() => mongo.disconnect);
+
 // Abrimos el servidor si la conexión con mongo es extitosa
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => app.listen(PORT, () => console.log(`Server running at ${PORT}`)))
-  .catch((error) => console.error(error.message));
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => app.listen(PORT, () => console.log(`Server running at ${PORT}`)))
+//   .catch((error) => console.error(error.message));
