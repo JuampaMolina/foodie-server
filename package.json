@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "serve": "nodemon ./src/index.js",
+    "seed": "node ./src/db/seeders/categorySeed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
