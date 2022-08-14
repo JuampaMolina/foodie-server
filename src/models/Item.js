@@ -6,11 +6,8 @@ const itemSchema = mongoose.Schema(
     description: String,
     price: Number,
     category: {
-      _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
-      },
-      name: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
     },
   },
   { versionKey: false }
