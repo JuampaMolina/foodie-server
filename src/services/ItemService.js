@@ -28,7 +28,9 @@ export async function getItemsByCategoryId(categoryId) {
     // if (!category) {
     //   throw new Error("La categoría no ha sido encontrada");
     // }
-    const items = await Item.find({ category: categoryId });
+    const items = await Item.find({ category: categoryId }).populate(
+      "category"
+    );
     return items;
   } catch (error) {
     throw error;

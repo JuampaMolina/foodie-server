@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 
 import itemRoutes from "./routes/items.js";
 import categoryRoutes from "./routes/categories.js";
+import ordersRoutes from "./routes/orders.js";
+
 import requestLogger from "./middleware/requestLogger.js";
 import responseLogger from "./middleware/responseLogger.js";
 
@@ -20,6 +22,7 @@ app.use(requestLogger);
 
 app.use("/items", itemRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/orders", ordersRoutes);
 
 // 404
 app.use(function (req, res) {
