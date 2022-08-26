@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const orderSchema = mongoose.Schema(
   {
     totalPrice: Number,
-    date: Date,
+    date: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

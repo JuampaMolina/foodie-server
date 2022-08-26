@@ -3,7 +3,8 @@ import User from "../models/User.js";
 
 export async function getAll() {
   try {
-    const orders = await Order.find().populate("user");
+    // hacer el populate en getById para ahorrar peticiones?
+    const orders = await Order.find().populate(["user", "items"]);
     return orders;
   } catch (error) {
     throw error;
