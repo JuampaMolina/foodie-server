@@ -20,7 +20,7 @@ export async function login(email, password) {
       userRole: user.role,
     };
 
-    const token = jwt.sign(userForToken, "secret");
+    const token = jwt.sign(userForToken, "secret", { expiresIn: "24h" });
 
     return { user, token };
   } catch (error) {
