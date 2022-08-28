@@ -21,6 +21,7 @@ export async function getOrdersByUserId(req, res, next) {
 
 export async function create(req, res, next) {
   const data = req.body;
+  data.user = req.user.userId;
   try {
     const order = await OrderService.create(data);
     return res.status(200).json(order);
