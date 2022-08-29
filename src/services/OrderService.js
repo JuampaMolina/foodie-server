@@ -11,9 +11,12 @@ export async function getAll() {
   }
 }
 
-export async function getOrderByUserId(userId) {
+export async function getOrdersByUserId(userId) {
   try {
-    const order = await Order.find({ user: userId }).populate("items");
+    const order = await Order.find({ user: userId }).populate([
+      "user",
+      "items",
+    ]);
     if (!order) {
       throw new Error("Usuario no encontrado");
     }
