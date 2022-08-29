@@ -1,6 +1,6 @@
 import * as CategoryService from "../services/CategoryService.js";
 
-export async function getAll(req, res, next) {
+export async function getAll(req, res) {
   try {
     const categories = await CategoryService.getAll();
     return res.status(200).json(categories);
@@ -9,7 +9,7 @@ export async function getAll(req, res, next) {
   }
 }
 
-export async function getById(req, res, next) {
+export async function getById(req, res) {
   const { id } = req.params;
   try {
     const category = await CategoryService.getById(id);
@@ -19,7 +19,7 @@ export async function getById(req, res, next) {
   }
 }
 
-export async function create(req, res, next) {
+export async function create(req, res) {
   const data = req.body;
   // todo: validar data
   try {
@@ -30,7 +30,7 @@ export async function create(req, res, next) {
   }
 }
 
-export async function update(req, res, next) {
+export async function update(req, res) {
   const { id } = req.params;
   const data = req.body;
   // todo: validar data
@@ -42,7 +42,7 @@ export async function update(req, res, next) {
   }
 }
 
-export async function remove(req, res, next) {
+export async function remove(req, res) {
   const { id } = req.params;
   try {
     const category = await CategoryService.remove(id);

@@ -12,7 +12,5 @@ router.get("/category/:id", ItemController.getItemsByCategoryId);
 router.post("/", checkAuth, checkAdmin, ItemController.create);
 router.put("/:id", checkAuth, checkAdmin, ItemController.update);
 router.delete("/:id", checkAuth, checkAdmin, ItemController.remove);
-// router.get("/category/:id", getItemsByCategoryId);
-// router.put("/category", addCategoryToItem);
 
 export default router;

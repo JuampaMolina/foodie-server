@@ -1,6 +1,6 @@
 import * as OrderService from "../services/OrderService.js";
 
-export async function getAll(req, res, next) {
+export async function getAll(req, res) {
   try {
     const orders = await OrderService.getAll();
     return res.status(200).json(orders);
@@ -9,7 +9,7 @@ export async function getAll(req, res, next) {
   }
 }
 
-export async function getOrdersByUserId(req, res, next) {
+export async function getOrdersByUserId(req, res) {
   const { id } = req.params;
   try {
     const order = await OrderService.getOrdersByUserId(id);
@@ -19,7 +19,7 @@ export async function getOrdersByUserId(req, res, next) {
   }
 }
 
-export async function create(req, res, next) {
+export async function create(req, res) {
   const data = req.body;
   data.user = req.user.userId;
   try {

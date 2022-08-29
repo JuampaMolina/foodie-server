@@ -1,6 +1,6 @@
 import * as ItemService from "../services/ItemService.js";
 
-export async function getAll(req, res, next) {
+export async function getAll(req, res) {
   try {
     const items = await ItemService.getAll();
     return res.status(200).json(items);
@@ -9,7 +9,7 @@ export async function getAll(req, res, next) {
   }
 }
 
-export async function getById(req, res, next) {
+export async function getById(req, res) {
   const { id } = req.params;
   try {
     const item = await ItemService.getById(id);
@@ -19,7 +19,7 @@ export async function getById(req, res, next) {
   }
 }
 
-export async function getItemsByCategoryId(req, res, next) {
+export async function getItemsByCategoryId(req, res) {
   const { id } = req.params;
   try {
     const item = await ItemService.getItemsByCategoryId(id);
@@ -29,7 +29,7 @@ export async function getItemsByCategoryId(req, res, next) {
   }
 }
 
-export async function create(req, res, next) {
+export async function create(req, res) {
   const data = req.body;
   // todo: validar data
   try {
@@ -40,7 +40,7 @@ export async function create(req, res, next) {
   }
 }
 
-export async function update(req, res, next) {
+export async function update(req, res) {
   const { id } = req.params;
   const data = req.body;
   // todo: validar data
@@ -52,7 +52,7 @@ export async function update(req, res, next) {
   }
 }
 
-export async function remove(req, res, next) {
+export async function remove(req, res) {
   const { id } = req.params;
   try {
     const item = await ItemService.remove(id);

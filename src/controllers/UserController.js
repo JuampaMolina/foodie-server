@@ -1,6 +1,6 @@
 import * as UserService from "../services/UserService.js";
 
-export async function login(req, res, next) {
+export async function login(req, res) {
   try {
     let { email, password } = req.body;
     let loggedUser = await UserService.login(email, password);
@@ -10,7 +10,7 @@ export async function login(req, res, next) {
   }
 }
 
-export async function register(req, res, next) {
+export async function register(req, res) {
   try {
     let { name, email, password } = req.body;
     let savedUser = await UserService.register(name, email, password);

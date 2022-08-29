@@ -1,9 +1,7 @@
 import Order from "../models/Order.js";
-import User from "../models/User.js";
 
 export async function getAll() {
   try {
-    // hacer el populate en getById para ahorrar peticiones?
     const orders = await Order.find().populate(["user", "items"]);
     return orders;
   } catch (error) {

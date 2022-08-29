@@ -24,11 +24,6 @@ export async function getById(id) {
 
 export async function create(data) {
   try {
-    // const categoryQuery = await Category.findById(data.category._id);
-    // if (categoryQuery) {
-    //   throw new Error("La categoría ya existe");
-    // }
-
     const category = await Category.create(data);
     if (!category) {
       throw new Error("No se ha podido crear la categoría");
