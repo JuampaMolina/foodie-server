@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import userRoutes from "./routes/users.js";
-import itemRoutes from "./routes/items.js";
-import categoryRoutes from "./routes/categories.js";
-import orderRoutes from "./routes/orders.js";
+import userRoutes from "./routes/UserRoutes.js";
+import itemRoutes from "./routes/ItemRoutes.js";
+import categoryRoutes from "./routes/CategoryRoutes.js";
+import orderRoutes from "./routes/OrderRoutes.js";
 
 import requestLogger from "./middleware/requestLogger.js";
 
