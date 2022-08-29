@@ -21,7 +21,6 @@ export async function getById(req, res) {
 
 export async function create(req, res) {
   const data = req.body;
-  // todo: validar data
   try {
     const category = await CategoryService.create(data);
     return res.status(200).json(category);
@@ -33,7 +32,6 @@ export async function create(req, res) {
 export async function update(req, res) {
   const { id } = req.params;
   const data = req.body;
-  // todo: validar data
   try {
     const category = await CategoryService.update(id, data);
     return res.status(200).json(category);
