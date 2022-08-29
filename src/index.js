@@ -17,7 +17,6 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(requestLogger);
-app.use(responseLogger);
 
 app.use("/users", userRoutes);
 app.use("/items", itemRoutes);
