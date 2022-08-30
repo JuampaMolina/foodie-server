@@ -16,11 +16,6 @@ export default (function () {
         throw new Error("El usuario y contraseña no coinciden");
       }
 
-      // const userForToken = {
-      //   userId: user._id,
-      //   userRole: user.role,
-      // };
-
       const userForToken = {
         user,
       };

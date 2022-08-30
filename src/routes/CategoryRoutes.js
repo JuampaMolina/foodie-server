@@ -2,8 +2,8 @@ import express from "express";
 
 import CategoryController from "../controllers/CategoryController.js";
 import validate from "../middleware/validate.js";
-import isMongoId from "../middleware/commands/isMongoId.js";
 import requireAdmin from "../middleware/requireAdmin.js";
+import isMongoId from "../middleware/commands/isMongoId.js";
 import createCategory from "../middleware/commands/category/createCategory.js";
 import updateCategory from "../middleware/commands/category/updateCategory.js";
 

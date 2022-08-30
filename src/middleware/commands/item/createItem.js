@@ -1,6 +1,5 @@
 import { body } from "express-validator";
 import capitalize from "../../../utils/capitalize.js";
-import existingCategory from "../../../utils/existingCategory.js";
 
 export default () => {
   return [
@@ -18,6 +17,6 @@ export default () => {
       .isMongoId()
       .withMessage("Se necesita un Id válido de la categoría"),
     body("description").trim(),
-    body("price").isNumeric().notEmpty().withMessage("El precio es necesario"),
+    body("price").notEmpty().isNumeric().withMessage("El precio es necesario"),
   ];
 };
