@@ -1,4 +1,5 @@
 import Item from "../models/Item.js";
+import Category from "../models/Category.js";
 
 export default (function () {
   const getAll = async () => {
@@ -14,7 +15,7 @@ export default (function () {
     try {
       const item = await Item.findById(id);
       if (!item) {
-        throw new Error("Item no encontrado");
+        throw new Error("El item no existe");
       }
       return item.populate("category");
     } catch (error) {
@@ -24,6 +25,11 @@ export default (function () {
 
   const getItemsByCategoryId = async (categoryId) => {
     try {
+      const category = await Category.findById(categoryId);
+      if (!category) {
+        throw new Error("La categoría no existe");
+      }
+
       const items = await Item.find({ category: categoryId }).populate(
         "category"
       );
@@ -35,6 +41,11 @@ export default (function () {
 
   const create = async (data) => {
     try {
+      const category = await Category.findById(data.category);
+      if (!category) {
+        throw new Error("La categoría no existe");
+      }
+
       const item = await Item.create(data);
       if (!item) {
         throw new Error("No se ha podido crear el item");
@@ -47,11 +58,23 @@ export default (function () {
 
   const update = async (id, data) => {
     try {
-      const item = await Item.findByIdAndUpdate(id, data, { new: true });
+      const category = await Category.findById(data.category);
+      if (!category) {
+        throw new Error("La categoría no existe");
+      }
+
+      const item = await Item.findById(id);
       if (!item) {
+        throw new Error("El item no existe");
+      }
+
+      const modifiedItem = await Item.findByIdAndUpdate(id, data, {
+        new: true,
+      });
+      if (!modifiedItem) {
         throw new Error("No se ha podido actualizar el item");
       }
-      return item.populate("category");
+      return modifiedItem.populate("category");
     } catch (error) {
       throw error;
     }
