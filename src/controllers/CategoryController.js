@@ -3,7 +3,7 @@ import CategoryService from "../services/CategoryService.js";
 export default (function () {
   const getAll = async (req, res) => {
     try {
-      const categories = await CategoryService.getAll;
+      const categories = await CategoryService.getAll();
       return res.status(200).json(categories);
     } catch (error) {
       return res.status(400).json({ status: 400, message: error.message });
