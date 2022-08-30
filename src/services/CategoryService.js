@@ -1,65 +1,75 @@
 import Category from "../models/Category.js";
 import Item from "../models/Item.js";
 
-export async function getAll() {
-  try {
-    const categories = await Category.find();
-    return categories;
-  } catch (error) {
-    throw error;
-  }
-}
-
-export async function getById(id) {
-  try {
-    const category = await Category.findById(id);
-    if (!category) {
-      throw new Error("Categoría no encontrado");
+export default (function () {
+  const getAll = async () => {
+    try {
+      const categories = await Category.find();
+      return categories;
+    } catch (error) {
+      throw error;
     }
-    return category;
-  } catch (error) {
-    throw error;
-  }
-}
+  };
 
-export async function create(data) {
-  try {
-    const category = await Category.create(data);
-    if (!category) {
-      throw new Error("No se ha podido crear la categoría");
+  const getById = async (id) => {
+    try {
+      const category = await Category.findById(id);
+      if (!category) {
+        throw new Error("Categoría no encontrada");
+      }
+      return category;
+    } catch (error) {
+      throw error;
     }
-    return category;
-  } catch (error) {
-    throw error;
-  }
-}
+  };
 
-export async function update(id, data) {
-  try {
-    const category = await Category.findByIdAndUpdate(id, data, {
-      new: true,
-    });
-    if (!category) {
-      throw new Error("No se ha podido actualizar la categoría");
+  const create = async (data) => {
+    try {
+      const category = await Category.create(data);
+      if (!category) {
+        throw new Error("No se ha podido crear la categoría");
+      }
+      return category;
+    } catch (error) {
+      throw error;
     }
+  };
 
-    return category;
-  } catch (error) {
-    throw error;
-  }
-}
+  const update = async (id, data) => {
+    try {
+      const category = await Category.findByIdAndUpdate(id, data, {
+        new: true,
+      });
+      if (!category) {
+        throw new Error("No se ha podido actualizar la categoría");
+      }
 
-export async function remove(id) {
-  try {
-    const category = await Category.findByIdAndDelete(id);
-    if (!category) {
-      throw new Error("No se ha podido eliminar la categoría");
+      return category;
+    } catch (error) {
+      throw error;
     }
+  };
 
-    await Item.updateMany({ category: id }, { category: undefined });
+  const remove = async (id) => {
+    try {
+      const category = await Category.findByIdAndDelete(id);
+      if (!category) {
+        throw new Error("No se ha podido eliminar la categoría");
+      }
 
-    return category;
-  } catch (error) {
-    throw error;
-  }
-}
+      await Item.updateMany({ category: id }, { category: undefined });
+
+      return category;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  return {
+    getAll,
+    getById,
+    create,
+    update,
+    remove,
+  };
+})();
