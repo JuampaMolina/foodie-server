@@ -1,16 +1,15 @@
 import express from "express";
 
-import * as ItemController from "../controllers/ItemController.js";
-import checkAuth from "../middleware/checkAuth.js";
-import checkAdmin from "../middleware/checkAdmin.js";
+import ItemController from "../controllers/ItemController.js";
+import requireAdmin from "../middleware/requireAdmin.js";
 
 const router = express.Router();
 
 router.get("/", ItemController.getAll);
 router.get("/:id", ItemController.getById);
 router.get("/category/:id", ItemController.getItemsByCategoryId);
-router.post("/", checkAuth, checkAdmin, ItemController.create);
-router.put("/:id", checkAuth, checkAdmin, ItemController.update);
-router.delete("/:id", checkAuth, checkAdmin, ItemController.remove);
+router.post("/", requireAdmin(), ItemController.create);
+router.put("/:id", requireAdmin(), ItemController.update);
+router.delete("/:id", requireAdmin(), ItemController.remove);
 
 export default router;

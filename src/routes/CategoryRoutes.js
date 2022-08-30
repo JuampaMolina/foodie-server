@@ -1,8 +1,7 @@
 import express from "express";
 
-import * as CategoryController from "../controllers/CategoryController.js";
-import checkAuth from "../middleware/checkAuth.js";
-import checkAdmin from "../middleware/checkAdmin.js";
+import CategoryController from "../controllers/CategoryController.js";
+import requireAdmin from "../middleware/requireAdmin.js";
 import validate from "../middleware/validate.js";
 import isObjectId from "../middleware/isObjectId.js";
 import createCategory from "../middleware/commands/category/createCategory.js";
@@ -15,24 +14,21 @@ router.get("/", CategoryController.getAll);
 router.get("/:id", isObjectId(), validate, CategoryController.getById);
 router.post(
   "/",
-  checkAuth,
-  checkAdmin,
+  requireAdmin(),
   createCategory(),
   validate,
   CategoryController.create
 );
 router.put(
   "/:id",
-  checkAuth,
-  checkAdmin,
+  requireAdmin(),
   updateCategory(),
   validate,
   CategoryController.update
 );
 router.delete(
   "/:id",
-  checkAuth,
-  checkAdmin,
+  requireAdmin(),
   deleteCategory(),
   validate,
   CategoryController.remove
