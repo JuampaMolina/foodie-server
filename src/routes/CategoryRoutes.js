@@ -2,16 +2,15 @@ import express from "express";
 
 import CategoryController from "../controllers/CategoryController.js";
 import validate from "../middleware/validate.js";
-import isObjectId from "../middleware/isObjectId.js";
+import isMongoId from "../middleware/commands/isMongoId.js";
 import requireAdmin from "../middleware/requireAdmin.js";
 import createCategory from "../middleware/commands/category/createCategory.js";
 import updateCategory from "../middleware/commands/category/updateCategory.js";
-import deleteCategory from "../middleware/commands/category/deleteCategory.js";
 
 const router = express.Router();
 
 router.get("/", CategoryController.getAll);
-router.get("/:id", isObjectId(), validate(), CategoryController.getById);
+router.get("/:id", isMongoId(), validate(), CategoryController.getById);
 router.post(
   "/",
   requireAdmin(),
@@ -29,7 +28,7 @@ router.put(
 router.delete(
   "/:id",
   requireAdmin(),
-  deleteCategory(),
+  isMongoId(),
   validate(),
   CategoryController.remove
 );

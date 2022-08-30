@@ -11,7 +11,6 @@ export default () => (req, res, next) => {
       if (!token || !decodedToken.user) {
         throw new Error("Falta el token o no es válido");
       } else {
-        console.log(decodedToken);
         req.user = decodedToken.user;
         next();
       }
