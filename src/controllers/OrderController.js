@@ -13,8 +13,8 @@ export default (function () {
   const getOrdersByUserId = async (req, res) => {
     const { id } = req.params;
     try {
-      const order = await OrderService.getOrdersByUserId(id);
-      return res.status(200).json(order);
+      const orders = await OrderService.getOrdersByUserId(id);
+      return res.status(200).json(orders);
     } catch (error) {
       return res.status(404).json({ status: 404, message: error.message });
     }
@@ -22,7 +22,7 @@ export default (function () {
 
   const create = async (req, res) => {
     const data = req.body;
-    data.user = req.user.userId;
+    data.user = req.user._id;
     try {
       const order = await OrderService.create(data);
       return res.status(200).json(order);

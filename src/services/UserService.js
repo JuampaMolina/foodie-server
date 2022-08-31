@@ -24,7 +24,6 @@ export default (function () {
 
       return { user, token };
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };
