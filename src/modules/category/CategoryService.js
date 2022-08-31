@@ -41,7 +41,7 @@ export default (function () {
         new: true,
       });
       if (!category) {
-        throw new Error("No se ha podido actualizar la categoría");
+        throw new Error("La categoría no existe");
       }
 
       return category;

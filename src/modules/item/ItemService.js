@@ -63,16 +63,11 @@ export default (function () {
         throw new Error("La categoría no existe");
       }
 
-      const item = await Item.findById(id);
-      if (!item) {
-        throw new Error("El item no existe");
-      }
-
       const modifiedItem = await Item.findByIdAndUpdate(id, data, {
         new: true,
       });
       if (!modifiedItem) {
-        throw new Error("No se ha podido actualizar el item");
+        throw new Error("El item no existe");
       }
       return modifiedItem.populate("category");
     } catch (error) {
