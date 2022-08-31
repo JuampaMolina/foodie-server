@@ -1,5 +1,4 @@
 import express from "express";
-
 import CategoryController from "./CategoryController.js";
 import validate from "../../middleware/validate.js";
 import requireAdmin from "../../middleware/requireAdmin.js";
