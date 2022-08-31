@@ -1,4 +1,4 @@
-import Category from "../../models/Category.js";
+import Category from "../../modules/category/CategoryModel.js";
 import mongo from "../mongo.js";
 
 const categories = [

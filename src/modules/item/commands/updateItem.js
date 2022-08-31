@@ -1,4 +1,4 @@
-import isMongoId from "../isMongoId.js";
+import isMongoId from "../../../middleware/isMongoId.js";
 import createItem from "./createItem.js";
 
 export default () => {

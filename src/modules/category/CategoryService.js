@@ -1,5 +1,5 @@
-import Category from "../models/Category.js";
-import Item from "../models/Item.js";
+import Category from "./CategoryModel.js";
+import Item from "../item/ItemModel.js";
 
 export default (function () {
   const getAll = async () => {

@@ -1,11 +1,11 @@
 import express from "express";
 
-import ItemController from "../controllers/ItemController.js";
-import validate from "../middleware/validate.js";
-import requireAdmin from "../middleware/requireAdmin.js";
-import isMongoId from "../middleware/commands/isMongoId.js";
-import createItem from "../middleware/commands/item/createItem.js";
-import updateItem from "../middleware/commands/item/updateItem.js";
+import ItemController from "./ItemController.js";
+import validate from "../../middleware/validate.js";
+import requireAdmin from "../../middleware/requireAdmin.js";
+import isMongoId from "../../middleware/isMongoId.js";
+import createItem from "./commands/createItem.js";
+import updateItem from "./commands/updateItem.js";
 
 const router = express.Router();
 

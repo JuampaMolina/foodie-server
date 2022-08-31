@@ -1,11 +1,11 @@
 import express from "express";
 
-import CategoryController from "../controllers/CategoryController.js";
-import validate from "../middleware/validate.js";
-import requireAdmin from "../middleware/requireAdmin.js";
-import isMongoId from "../middleware/commands/isMongoId.js";
-import createCategory from "../middleware/commands/category/createCategory.js";
-import updateCategory from "../middleware/commands/category/updateCategory.js";
+import CategoryController from "./CategoryController.js";
+import validate from "../../middleware/validate.js";
+import requireAdmin from "../../middleware/requireAdmin.js";
+import isMongoId from "../../middleware/isMongoId.js";
+import createCategory from "./commands/createCategory.js";
+import updateCategory from "./commands/updateCategory.js";
 
 const router = express.Router();
 

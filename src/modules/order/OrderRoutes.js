@@ -1,10 +1,10 @@
 import express from "express";
 
-import OrderController from "../controllers/OrderController.js";
-import requireAuth from "../middleware/requireAuth.js";
-import validate from "../middleware/validate.js";
-import isMongoId from "../middleware/commands/isMongoId.js";
-import createOrder from "../middleware/commands/order/createOrder.js";
+import OrderController from "./OrderController.js";
+import validate from "../../middleware/validate.js";
+import requireAuth from "../../middleware/requireAuth.js";
+import isMongoId from "../../middleware/isMongoId.js";
+import createOrder from "./commands/createOrder.js";
 
 const router = express.Router();
 
