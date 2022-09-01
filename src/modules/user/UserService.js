@@ -16,11 +16,7 @@ export default (function () {
         throw new Error("El usuario y contraseña no coinciden");
       }
 
-      const userForToken = {
-        user,
-      };
-
-      const token = jwt.sign(userForToken, "secret", { expiresIn: "24h" });
+      const token = jwt.sign({ user }, "secret", { expiresIn: "24h" });
 
       return { user, token };
     } catch (error) {
