@@ -7,6 +7,7 @@ const items = [
     description: "Botella de agua 50cl",
     price: 2,
     category: "63127b52d34bf875c3c3d4c1",
+    image: "assets/items/drink.svg",
   },
   {
     _id: "631622af43187a2f33a283a2",
@@ -14,6 +15,7 @@ const items = [
     description: "Lata de Coca-Cola 33cl",
     price: 2,
     category: "63127b52d34bf875c3c3d4c1",
+    image: "assets/items/drink.svg",
   },
   {
     _id: "631622af43187a2f33a283a3",
@@ -21,6 +23,7 @@ const items = [
     description: "Postre tradicional italiano con sabor a café",
     price: 4,
     category: "63127b52d34bf875c3c3d4c2",
+    image: "assets/items/dessert.svg",
   },
   {
     _id: "631622af43187a2f33a283a4",
@@ -28,6 +31,7 @@ const items = [
     description: "Bizcocho de chocolate y nueces",
     price: 4,
     category: "63127b52d34bf875c3c3d4c2",
+    image: "assets/items/dessert.svg",
   },
   {
     _id: "631622af43187a2f33a283a5",
@@ -35,6 +39,7 @@ const items = [
     description: "Tomate, mozzarella y albahaca fresca",
     price: 8,
     category: "63127b52d34bf875c3c3d4c3",
+    image: "assets/items/pizza.svg",
   },
   {
     _id: "631622af43187a2f33a283a6",
@@ -42,6 +47,7 @@ const items = [
     description: "Tomate, mozzarella, jamón york y piña",
     price: 10,
     category: "63127b52d34bf875c3c3d4c3",
+    image: "assets/items/pizza.svg",
   },
   {
     _id: "631622af43187a2f33a283a7",
@@ -49,6 +55,7 @@ const items = [
     description: "Espaguetis salsa a base de huevo, panceta y queso parmesano",
     price: 7,
     category: "63127b52d34bf875c3c3d4c4",
+    image: "assets/items/pasta.svg",
   },
   {
     _id: "631622af43187a2f33a283a8",
@@ -56,6 +63,7 @@ const items = [
     description: "Macarrones con salsa de tomate y carne picada",
     price: 7,
     category: "63127b52d34bf875c3c3d4c4",
+    image: "assets/items/pasta.svg",
   },
   {
     _id: "631622af43187a2f33a283a9",
@@ -63,6 +71,7 @@ const items = [
     description: "Hamburguesa con queso cheddar y bacon",
     price: 5,
     category: "63127b52d34bf875c3c3d4c5",
+    image: "assets/items/burger.svg",
   },
   {
     _id: "631622af43187a2f33a283b1",
@@ -71,6 +80,7 @@ const items = [
       "Hamburguesa en pan de chapata con rúcula, queso curado y jamón serrano",
     price: 6,
     category: "63127b52d34bf875c3c3d4c5",
+    image: "assets/items/burger.svg",
   },
   {
     _id: "631622af43187a2f33a283b2",
@@ -78,6 +88,7 @@ const items = [
     description: "Ensalada con lechuga romana, salsa césar, parmesano y pollo",
     price: 5,
     category: "63127b52d34bf875c3c3d4c6",
+    image: "assets/items/salad.svg",
   },
   {
     _id: "631622af43187a2f33a283b3",
@@ -85,6 +96,7 @@ const items = [
     description: "Ensalada con lechuga romana, tomates y zanahoria rallada",
     price: 4,
     category: "63127b52d34bf875c3c3d4c6",
+    image: "assets/items/salad.svg",
   },
 ];
 

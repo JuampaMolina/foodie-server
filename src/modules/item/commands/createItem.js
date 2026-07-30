@@ -18,5 +18,6 @@ export default () => {
       .withMessage("Se necesita un Id válido de la categoría"),
     body("description").trim(),
     body("price").notEmpty().isNumeric().withMessage("El precio es necesario"),
+    body("image").optional({ nullable: true }).trim(),
   ];
 };

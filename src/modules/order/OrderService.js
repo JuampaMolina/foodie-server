@@ -37,9 +37,26 @@ export default (function () {
     }
   };
 
+  const updateStatus = async (id, status) => {
+    try {
+      const order = await Order.findByIdAndUpdate(
+        id,
+        { status },
+        { new: true }
+      ).populate(["user", "items"]);
+      if (!order) {
+        throw new Error("El pedido no existe");
+      }
+      return order;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     getAll,
     getOrdersByUserId,
     create,
+    updateStatus,
   };
 })();

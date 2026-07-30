@@ -14,6 +14,11 @@ const orderSchema = mongoose.Schema(
         ref: "Item",
       },
     ],
+    status: {
+      type: String,
+      enum: ["pending", "preparing", "delivered"],
+      default: "pending",
+    },
   },
   { versionKey: false }
 );
