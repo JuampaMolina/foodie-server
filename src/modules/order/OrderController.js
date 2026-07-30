@@ -31,9 +31,21 @@ export default (function () {
     }
   };
 
+  const updateStatus = async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    try {
+      const order = await OrderService.updateStatus(id, status);
+      return res.status(200).json(order);
+    } catch (error) {
+      return res.status(400).json({ status: 400, message: error.message });
+    }
+  };
+
   return {
     getAll,
     getOrdersByUserId,
     create,
+    updateStatus,
   };
 })();
