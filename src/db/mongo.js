@@ -1,12 +1,9 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
-
-const URI = process.env.MONGO_URI ?? "";
+import env from "../config/env.js";
 
 const connect = async () => {
   try {
-    await mongoose.connect(URI);
+    await mongoose.connect(env.MONGO_URI);
     console.log("Mongo connection has been made");
   } catch (error) {
     console.log("Mongo connection error", error);

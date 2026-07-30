@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import env from "../config/env.js";
 
 export default () => (req, res, next) => {
   const authorization = req.get("authorization");
@@ -7,7 +8,7 @@ export default () => (req, res, next) => {
       throw new Error("La cabecera auhtorization debe ser de tipo Bearer");
     } else {
       const token = authorization.substring(7);
-      const decodedToken = jwt.verify(token, "secret");
+      const decodedToken = jwt.verify(token, env.JWT_SECRET);
       if (!token || !decodedToken.user) {
         throw new Error("Falta el token o no es válido");
       } else {
