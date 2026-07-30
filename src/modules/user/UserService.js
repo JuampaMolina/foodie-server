@@ -1,6 +1,7 @@
 import bycrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "./UserModel.js";
+import env from "../../config/env.js";
 
 export default (function () {
   const login = async (email, password) => {
@@ -16,7 +17,7 @@ export default (function () {
         throw new Error("El usuario y contraseña no coinciden");
       }
 
-      const token = jwt.sign({ user }, "secret", { expiresIn: "24h" });
+      const token = jwt.sign({ user }, env.JWT_SECRET, { expiresIn: "24h" });
 
       return { user, token };
     } catch (error) {
