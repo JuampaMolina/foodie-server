@@ -4,11 +4,15 @@
   "description": "",
   "main": "app.js",
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "start": "node ./src/app.js",
     "serve": "nodemon ./src/app.js",
     "seed": "node ./src/db/seeders/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check-syntax": "node ./scripts/check-syntax.js",
+    "test": "node --test"
   },
   "repository": {
     "type": "git",
@@ -22,15 +26,15 @@
   },
   "homepage": "https://github.com/JuampaMolina/foodie-server#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "express-validator": "^6.14.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.6"
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.9.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^3.1.14"
   }
 }

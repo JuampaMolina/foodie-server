@@ -9,7 +9,7 @@ export default () => (req, res, next) => {
   console.log(errors.array());
   let error = errors
     .array({ onlyFirstError: true })
-    .map((err) => `[${err.param}]: ${err.msg}`)[0];
+    .map((err) => `[${err.path}]: ${err.msg}`)[0];
 
   return res.status(400).json({
     message: error,
