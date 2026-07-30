@@ -12,6 +12,8 @@
     "serve": "nodemon ./src/app.js",
     "seed": "node ./src/db/seeders/index.js",
     "check-syntax": "node ./scripts/check-syntax.js",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write .",
     "test": "node --test"
   },
   "repository": {
@@ -35,6 +37,11 @@
     "mongoose": "^9.9.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.8.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.9.6"
   }
 }

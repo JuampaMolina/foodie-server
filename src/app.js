@@ -12,7 +12,10 @@ routes(app);
 
 app.listen(env.PORT, () => {
   console.log(`Server running at ${env.PORT}`);
-  mongo.connect();
+  mongo.connect().catch(() => {
+    console.log("No se pudo conectar a Mongo, cerrando el servidor");
+    process.exit(1);
+  });
 });
 
 export default app;
