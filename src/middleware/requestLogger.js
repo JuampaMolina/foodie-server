@@ -1,5 +1,7 @@
+import logger from "../config/logger.js";
+
 const requestLogger = (request, response, next) => {
-  console.log(`${request.method} url:: ${request.url}`);
+  logger.info({ method: request.method, url: request.url }, "request");
   next();
 };
 

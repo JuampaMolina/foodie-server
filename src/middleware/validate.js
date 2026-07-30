@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+import logger from "../config/logger.js";
 
 export default () => (req, res, next) => {
   const errors = validationResult(req);
@@ -6,7 +7,7 @@ export default () => (req, res, next) => {
     return next();
   }
 
-  console.log(errors.array());
+  logger.debug({ errors: errors.array() }, "validation failed");
   let error = errors
     .array({ onlyFirstError: true })
     .map((err) => `[${err.path}]: ${err.msg}`)[0];
