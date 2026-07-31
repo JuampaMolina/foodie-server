@@ -1,9 +1,11 @@
+import { matchedData } from "express-validator";
 import OrderService from "./OrderService.js";
 
 export default (function () {
   const getAll = async (req, res) => {
+    const { page, limit } = matchedData(req);
     try {
-      const orders = await OrderService.getAll();
+      const orders = await OrderService.getAll({ page, limit });
       return res.status(200).json(orders);
     } catch (error) {
       return res.status(400).json({ status: 400, message: error.message });

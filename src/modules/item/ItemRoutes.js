@@ -3,12 +3,13 @@ import ItemController from "./ItemController.js";
 import validate from "../../middleware/validate.js";
 import requireAdmin from "../../middleware/requireAdmin.js";
 import isMongoId from "../../middleware/isMongoId.js";
+import paginationQuery from "../../middleware/paginationQuery.js";
 import createItem from "./commands/createItem.js";
 import updateItem from "./commands/updateItem.js";
 
 const router = express.Router();
 
-router.get("/", ItemController.getAll);
+router.get("/", paginationQuery(), validate(), ItemController.getAll);
 router.get("/:id", isMongoId(), validate(), ItemController.getById);
 router.get(
   "/category/:id",
