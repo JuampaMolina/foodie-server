@@ -1,3 +1,4 @@
+import { matchedData } from "express-validator";
 import UserService from "./UserService.js";
 
 export default (function () {
@@ -41,10 +42,33 @@ export default (function () {
     }
   };
 
+  const getAll = async (req, res) => {
+    const { page, limit } = matchedData(req);
+    try {
+      const users = await UserService.getAll({ page, limit });
+      return res.status(200).json(users);
+    } catch (error) {
+      return res.status(400).json({ status: 400, message: error.message });
+    }
+  };
+
+  const updateRole = async (req, res) => {
+    const { id } = req.params;
+    const { role } = req.body;
+    try {
+      const user = await UserService.updateRole(id, role);
+      return res.status(200).json(user);
+    } catch (error) {
+      return res.status(400).json({ status: 400, message: error.message });
+    }
+  };
+
   return {
     login,
     register,
     forgotPassword,
     resetPassword,
+    getAll,
+    updateRole,
   };
 })();
