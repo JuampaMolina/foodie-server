@@ -4,6 +4,7 @@ import userRoutes from "./modules/user/UserRoutes.js";
 import itemRoutes from "./modules/item/ItemRoutes.js";
 import categoryRoutes from "./modules/category/CategoryRoutes.js";
 import orderRoutes from "./modules/order/OrderRoutes.js";
+import metricsRoutes from "./modules/metrics/MetricsRoutes.js";
 
 const MONGO_STATES = [
   "disconnected",
@@ -30,6 +31,7 @@ export default function (app) {
   app.use("/items", itemRoutes);
   app.use("/categories", categoryRoutes);
   app.use("/orders", orderRoutes);
+  app.use("/metrics", metricsRoutes);
 
   // 404
   app.use(function (req, res) {

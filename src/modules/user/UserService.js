@@ -3,6 +3,7 @@ import bycrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "./UserModel.js";
 import env from "../../config/env.js";
+import paginate from "../../utils/paginate.js";
 
 const RESET_TOKEN_TTL_MS = 60 * 60 * 1000;
 
@@ -83,10 +84,24 @@ export default (function () {
     return { message: "Contraseña actualizada correctamente" };
   };
 
+  const getAll = async (pagination) => {
+    return paginate(User, User.find(), pagination);
+  };
+
+  const updateRole = async (id, role) => {
+    const user = await User.findByIdAndUpdate(id, { role }, { new: true });
+    if (!user) {
+      throw new Error("El usuario no existe");
+    }
+    return user;
+  };
+
   return {
     login,
     register,
     forgotPassword,
     resetPassword,
+    getAll,
+    updateRole,
   };
 })();
