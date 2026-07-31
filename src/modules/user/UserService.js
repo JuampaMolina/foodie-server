@@ -1,7 +1,13 @@
+import crypto from "node:crypto";
 import bycrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "./UserModel.js";
 import env from "../../config/env.js";
+
+const RESET_TOKEN_TTL_MS = 60 * 60 * 1000;
+
+const hashToken = (token) =>
+  crypto.createHash("sha256").update(token).digest("hex");
 
 export default (function () {
   const login = async (email, password) => {
@@ -40,8 +46,47 @@ export default (function () {
     return savedUser;
   };
 
+  const forgotPassword = async (email) => {
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new Error("No existe ningún usuario con este correo");
+    }
+
+    const token = crypto.randomBytes(32).toString("hex");
+
+    user.resetPasswordTokenHash = hashToken(token);
+    user.resetPasswordExpires = new Date(Date.now() + RESET_TOKEN_TTL_MS);
+    await user.save();
+
+    return {
+      token,
+      warning:
+        "Este proyecto no tiene un servicio de email configurado: en producción este token se enviaría por correo, no se devolvería en la respuesta.",
+    };
+  };
+
+  const resetPassword = async (token, password) => {
+    const user = await User.findOne({
+      resetPasswordTokenHash: hashToken(token),
+      resetPasswordExpires: { $gt: new Date() },
+    });
+
+    if (!user) {
+      throw new Error("El token no es válido o ha caducado");
+    }
+
+    user.passwordHash = await bycrypt.hash(password, 10);
+    user.resetPasswordTokenHash = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    return { message: "Contraseña actualizada correctamente" };
+  };
+
   return {
     login,
     register,
+    forgotPassword,
+    resetPassword,
   };
 })();

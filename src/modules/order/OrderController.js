@@ -44,10 +44,21 @@ export default (function () {
     }
   };
 
+  const cancel = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const order = await OrderService.cancel(id, req.user);
+      return res.status(200).json(order);
+    } catch (error) {
+      return res.status(400).json({ status: 400, message: error.message });
+    }
+  };
+
   return {
     getAll,
     getOrdersByUserId,
     create,
     updateStatus,
+    cancel,
   };
 })();

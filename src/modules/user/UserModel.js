@@ -6,6 +6,8 @@ const userSchema = mongoose.Schema(
     email: String,
     role: String,
     passwordHash: String,
+    resetPasswordTokenHash: String,
+    resetPasswordExpires: Date,
   },
   { versionKey: false }
 );
@@ -13,6 +15,8 @@ const userSchema = mongoose.Schema(
 userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     delete returnedObject.passwordHash;
+    delete returnedObject.resetPasswordTokenHash;
+    delete returnedObject.resetPasswordExpires;
   },
 });
 

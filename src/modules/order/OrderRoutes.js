@@ -31,5 +31,12 @@ router.put(
   requireAdmin(),
   OrderController.updateStatus
 );
+router.put(
+  "/:id/cancel",
+  isMongoId(),
+  validate(),
+  requireAuth(),
+  OrderController.cancel
+);
 
 export default router;
