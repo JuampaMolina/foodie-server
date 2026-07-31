@@ -4,12 +4,13 @@ import validate from "../../middleware/validate.js";
 import requireAuth from "../../middleware/requireAuth.js";
 import requireAdmin from "../../middleware/requireAdmin.js";
 import isMongoId from "../../middleware/isMongoId.js";
+import paginationQuery from "../../middleware/paginationQuery.js";
 import createOrder from "./commands/createOrder.js";
 import updateOrderStatus from "./commands/updateOrderStatus.js";
 
 const router = express.Router();
 
-router.get("/", OrderController.getAll);
+router.get("/", paginationQuery(), validate(), OrderController.getAll);
 router.post(
   "/",
   requireAuth(),

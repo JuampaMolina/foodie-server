@@ -1,9 +1,11 @@
+import { matchedData } from "express-validator";
 import ItemService from "./ItemService.js";
 
 export default (function () {
   const getAll = async (req, res) => {
+    const { page, limit } = matchedData(req);
     try {
-      const items = await ItemService.getAll();
+      const items = await ItemService.getAll({ page, limit });
       return res.status(200).json(items);
     } catch (error) {
       return res.status(400).json({ status: 400, message: error.message });

@@ -1,10 +1,10 @@
 import Item from "./ItemModel.js";
 import Category from "../category/CategoryModel.js";
+import paginate from "../../utils/paginate.js";
 
 export default (function () {
-  const getAll = async () => {
-    const items = await Item.find().populate("category");
-    return items;
+  const getAll = async (pagination) => {
+    return paginate(Item, Item.find().populate("category"), pagination);
   };
 
   const getById = async (id) => {

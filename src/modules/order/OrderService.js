@@ -1,9 +1,13 @@
 import Order from "./OrderModel.js";
+import paginate from "../../utils/paginate.js";
 
 export default (function () {
-  const getAll = async () => {
-    const orders = await Order.find().populate(["user", "items"]);
-    return orders;
+  const getAll = async (pagination) => {
+    return paginate(
+      Order,
+      Order.find().populate(["user", "items"]),
+      pagination
+    );
   };
 
   const getOrdersByUserId = async (userId) => {
