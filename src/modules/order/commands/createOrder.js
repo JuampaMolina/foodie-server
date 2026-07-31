@@ -10,6 +10,12 @@ export default () => {
     body("items")
       .isArray({ min: 1 })
       .withMessage("El pedido debe tener como mínimo 1 item"),
+    body("items.*.item")
+      .isMongoId()
+      .withMessage("Cada item debe tener un id válido"),
+    body("items.*.quantity")
+      .isInt({ min: 1 })
+      .withMessage("La cantidad debe ser un entero positivo"),
     body("address")
       .trim()
       .notEmpty()

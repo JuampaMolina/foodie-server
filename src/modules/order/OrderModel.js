@@ -11,8 +11,15 @@ const orderSchema = mongoose.Schema(
     },
     items: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Item",
+        _id: false,
+        item: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Item",
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+        },
       },
     ],
     status: {

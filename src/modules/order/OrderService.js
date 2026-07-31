@@ -5,7 +5,7 @@ export default (function () {
   const getAll = async (pagination) => {
     return paginate(
       Order,
-      Order.find().populate(["user", "items"]),
+      Order.find().populate(["user", "items.item"]),
       pagination
     );
   };
@@ -13,7 +13,7 @@ export default (function () {
   const getOrdersByUserId = async (userId) => {
     const order = await Order.find({ user: userId }).populate([
       "user",
-      "items",
+      "items.item",
     ]);
     if (!order) {
       throw new Error("Usuario no encontrado");
@@ -26,7 +26,7 @@ export default (function () {
     if (!order) {
       throw new Error("No se ha podido realizar el pedido");
     }
-    return order.populate("items");
+    return order.populate("items.item");
   };
 
   const updateStatus = async (id, status) => {
@@ -34,7 +34,7 @@ export default (function () {
       id,
       { status },
       { new: true }
-    ).populate(["user", "items"]);
+    ).populate(["user", "items.item"]);
     if (!order) {
       throw new Error("El pedido no existe");
     }
@@ -59,7 +59,7 @@ export default (function () {
     order.status = "cancelled";
     await order.save();
 
-    return order.populate(["user", "items"]);
+    return order.populate(["user", "items.item"]);
   };
 
   return {
