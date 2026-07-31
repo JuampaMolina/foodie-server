@@ -21,8 +21,30 @@ export default (function () {
     }
   };
 
+  const forgotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+      const result = await UserService.forgotPassword(email);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(404).json({ status: 404, message: error.message });
+    }
+  };
+
+  const resetPassword = async (req, res) => {
+    const { token, password } = req.body;
+    try {
+      const result = await UserService.resetPassword(token, password);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json({ status: 400, message: error.message });
+    }
+  };
+
   return {
     login,
     register,
+    forgotPassword,
+    resetPassword,
   };
 })();
