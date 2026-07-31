@@ -41,10 +41,32 @@ export default (function () {
     return order;
   };
 
+  const cancel = async (id, user) => {
+    const order = await Order.findById(id);
+    if (!order) {
+      throw new Error("El pedido no existe");
+    }
+
+    const isOwner = order.user.toString() === user._id.toString();
+    if (!isOwner && user.role !== "admin") {
+      throw new Error("No tienes permiso para cancelar este pedido");
+    }
+
+    if ((order.status ?? "pending") !== "pending") {
+      throw new Error("Solo se pueden cancelar pedidos pendientes");
+    }
+
+    order.status = "cancelled";
+    await order.save();
+
+    return order.populate(["user", "items"]);
+  };
+
   return {
     getAll,
     getOrdersByUserId,
     create,
     updateStatus,
+    cancel,
   };
 })();
