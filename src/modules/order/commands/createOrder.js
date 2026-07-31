@@ -10,5 +10,9 @@ export default () => {
     body("items")
       .isArray({ min: 1 })
       .withMessage("El pedido debe tener como mínimo 1 item"),
+    body("address")
+      .trim()
+      .notEmpty()
+      .withMessage("La dirección de entrega es necesaria"),
   ];
 };

@@ -4,6 +4,7 @@ const orderSchema = mongoose.Schema(
   {
     totalPrice: Number,
     date: Date,
+    address: String,
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
