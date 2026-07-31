@@ -10,5 +10,6 @@ export default () => {
       .isLength({ min: 3 })
       .withMessage("El nombre debe tener como mínimo 3 carácteres")
       .customSanitizer((value) => capitalize(value)),
+    body("image").optional({ nullable: true }).trim(),
   ];
 };
