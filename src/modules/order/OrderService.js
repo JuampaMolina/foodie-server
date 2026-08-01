@@ -26,7 +26,7 @@ export default (function () {
     if (!order) {
       throw new Error("No se ha podido realizar el pedido");
     }
-    return order.populate("items.item");
+    return order.populate(["user", "items.item"]);
   };
 
   const updateStatus = async (id, status) => {

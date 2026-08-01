@@ -1,5 +1,9 @@
 import { matchedData } from "express-validator";
 import OrderService from "./OrderService.js";
+import {
+  notifyNewOrder,
+  notifyOrderStatusChanged,
+} from "../../realtime/socket.js";
 
 export default (function () {
   const getAll = async (req, res) => {
@@ -27,6 +31,7 @@ export default (function () {
     data.user = req.user._id;
     try {
       const order = await OrderService.create(data);
+      notifyNewOrder(order);
       return res.status(200).json(order);
     } catch (error) {
       return res.status(400).json({ status: 400, message: error.message });
@@ -38,6 +43,7 @@ export default (function () {
     const { status } = req.body;
     try {
       const order = await OrderService.updateStatus(id, status);
+      notifyOrderStatusChanged(order);
       return res.status(200).json(order);
     } catch (error) {
       return res.status(400).json({ status: 400, message: error.message });
@@ -48,6 +54,7 @@ export default (function () {
     const { id } = req.params;
     try {
       const order = await OrderService.cancel(id, req.user);
+      notifyOrderStatusChanged(order);
       return res.status(200).json(order);
     } catch (error) {
       return res.status(400).json({ status: 400, message: error.message });
