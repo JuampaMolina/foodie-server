@@ -1,5 +1,9 @@
 import Category from "../../modules/category/CategoryModel.js";
 
+// Los ids son fijos (no generados) porque son pocos y así se pueden usar a
+// mano para probar la API manualmente. itemSeed.js y orderSeed.js referencian
+// estas categorías por nombre, así que basta con tocar este array para
+// añadir o renombrar una categoría.
 const categories = [
   {
     _id: "63127b52d34bf875c3c3d4c1",
@@ -31,6 +35,16 @@ const categories = [
     name: "Ensaladas",
     image: "assets/categories/salad.svg",
   },
+  {
+    _id: "63127b52d34bf875c3c3d4c7",
+    name: "Sushi",
+    image: "assets/categories/sushi.svg",
+  },
+  {
+    _id: "63127b52d34bf875c3c3d4c8",
+    name: "Patatas",
+    image: "assets/categories/fries.svg",
+  },
 ];
 
 const seed = async () => {
@@ -40,3 +54,4 @@ const seed = async () => {
 };
 
 export default seed;
+export { categories };
