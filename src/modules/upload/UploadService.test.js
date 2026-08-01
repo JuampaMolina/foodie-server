@@ -22,7 +22,10 @@ test("signParams calcula el mismo hash SHA1 que Cloudinary espera", () => {
 
   assert.equal(
     signature,
-    expectedSignature({ timestamp: 1315060510, folder: "foodie/categories" }, "abcd")
+    expectedSignature(
+      { timestamp: 1315060510, folder: "foodie/categories" },
+      "abcd"
+    )
   );
 });
 
