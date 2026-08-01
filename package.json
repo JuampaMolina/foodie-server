@@ -35,7 +35,8 @@
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.9.0",
-    "pino": "^10.3.1"
+    "pino": "^10.3.1",
+    "socket.io": "^4.8.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -43,6 +44,7 @@
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.8.0",
     "nodemon": "^3.1.14",
-    "prettier": "^3.9.6"
+    "prettier": "^3.9.6",
+    "socket.io-client": "^4.8.3"
   }
 }
