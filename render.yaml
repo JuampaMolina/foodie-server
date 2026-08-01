@@ -2,10 +2,16 @@
 # este repo en Render y elegir "New Blueprint Instance", detecta este
 # fichero y crea el servicio con esta configuración sin más pasos manuales.
 #
-# MONGO_URI y JWT_SECRET no están aquí a propósito (son secretos): hay que
-# rellenarlos a mano en el panel de Render tras crear el servicio, en
-# Environment > Environment Variables. MONGO_URI debe apuntar a un cluster
-# de MongoDB Atlas (Render no ofrece Mongo gestionado).
+# MONGO_URI, JWT_SECRET y las CLOUDINARY_* no están aquí a propósito (son
+# secretos): hay que rellenarlos a mano en el panel de Render tras crear el
+# servicio, en Environment > Environment Variables. MONGO_URI debe apuntar a
+# un cluster de MongoDB Atlas (Render no ofrece Mongo gestionado).
+#
+# Las CLOUDINARY_* son opcionales: sin ellas el servidor arranca igual, pero
+# GET /uploads/signature responde 500 (sólo hace falta si se usa la subida
+# de imágenes de categoría). CLOUDINARY_CLOUD_NAME no es secreto (aparece en
+# la propia URL de subida del cliente), pero se deja igual con sync: false
+# por simplicidad de mantener las tres juntas.
 services:
   - type: web
     name: foodie-server
@@ -21,4 +27,10 @@ services:
       - key: MONGO_URI
         sync: false
       - key: JWT_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
         sync: false

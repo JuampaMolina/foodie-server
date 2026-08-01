@@ -30,3 +30,12 @@ test("GET /health responde 503 y degraded sin conexión a Mongo", async () => {
   assert.equal(typeof body.uptime, "number");
   server.close();
 });
+
+test("GET /uploads/signature exige admin, sin llegar a Cloudinary", async () => {
+  const server = await listen(buildApp());
+  const { port } = server.address();
+  const res = await fetch(`http://127.0.0.1:${port}/uploads/signature`);
+
+  assert.equal(res.status, 401);
+  server.close();
+});
